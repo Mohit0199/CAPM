@@ -6,8 +6,10 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from datetime import datetime, timedelta
 import pandas as pd
+import streamlit as st
 
 
+@st.cache_data(ttl=3600)
 def get_data(ticker):
     stock_data = yf.download(ticker, start='2024-01-01')[['Close']]
     stock_data.columns = ['Close']  # Simplify the MultiIndex column to a single column named 'Close'
